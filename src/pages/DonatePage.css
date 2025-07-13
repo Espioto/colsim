@@ -1,0 +1,98 @@
+.donate-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  color: var(--text-primary);
+}
+
+.donate-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.donate-header h1 {
+  font-size: var(--font-size-xxl);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.donate-header p {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+}
+
+.donate-content {
+  line-height: 1.7;
+}
+
+.donate-section {
+  background-color: var(--dark-surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.donate-section h2 {
+  font-size: 1.6rem;
+  color: var(--accent-primary);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.donate-section p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+}
+.donate-section p:last-child {
+  margin-bottom: 0;
+}
+
+.ways-to-give ul {
+  list-style: none; /* Remove default bullets */
+  padding-left: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.ways-to-give li {
+  background-color: var(--dark-surface-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: var(--spacing-md);
+  border-left: 3px solid var(--primary-color);
+}
+
+.ways-to-give li strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.donate-button { /* Example style if you add actual donation buttons */
+  margin-top: var(--spacing-sm);
+  display: inline-block;
+}
+
+.thank-you-note {
+  font-style: italic;
+  color: var(--secondary-color); /* Teal for thank you */
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.donate-actions {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+.donate-footer {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}

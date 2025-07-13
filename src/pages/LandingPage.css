@@ -1,0 +1,87 @@
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: url('https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
+  color: var(--text-primary);
+}
+
+.landing-content {
+  max-width: 700px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+
+
+
+.landing-title {
+  font-size: var(--font-size-xxl);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.landing-subtitle {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.landing-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.7;
+}
+
+.landing-actions .play-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-md);
+}
+.landing-actions .play-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.play-icon { font-size: 1.2em; }
+
+.landing-navigation {
+  margin-top: var(--spacing-xl);
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+.landing-nav-link {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+.landing-nav-link:hover {
+  color: var(--primary-color);
+}
+
+.landing-footer {
+  margin-top: auto; /* Pushes footer to bottom if content is short */
+  padding-top: var(--spacing-xl);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 700px; /* Match content width */
+}
+.landing-footer p {
+  margin-bottom: var(--spacing-xs);
+}

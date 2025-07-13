@@ -1,0 +1,91 @@
+.map-page-container {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+.map-header { margin-bottom: var(--spacing-lg); }
+.map-description { margin-bottom: var(--spacing-md); color: var(--text-secondary); }
+.map-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); gap: var(--spacing-md); flex-wrap: wrap; }
+.search-container .search-input { padding: var(--spacing-sm); border-radius: var(--border-radius-sm); border: 1px solid var(--color-border); background-color: var(--color-bg-secondary); color: var(--text-primary); min-width: 200px; }
+.filter-controls { display: flex; align-items: center; gap: var(--spacing-sm); }
+.filter-buttons button { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); background-color: var(--color-bg-tertiary); color: var(--text-secondary); border: 1px solid var(--color-border); }
+.filter-buttons button.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+.map-legend { margin-bottom: var(--spacing-md); font-size: var(--font-size-xs); color: var(--text-muted); }
+.map-container { width: 100%; max-width: 900px; margin: 0 auto var(--spacing-lg); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); background-color: var(--dark-surface-light); /* Light background for map */ position: relative; }
+.map-tooltip { position: absolute; background-color: rgba(0,0,0,0.8); color: white; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); pointer-events: none; transform: translate(-50%, -100%); white-space: nowrap; box-shadow: var(--shadow-md); }
+.map-tooltip h3 { margin-bottom: var(--spacing-xs); font-size: var(--font-size-md); color: var(--primary-color); }
+.tooltip-hint { font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--spacing-xs); }
+
+.state-details-card-map {
+  position: fixed; /* Or absolute relative to map-container */
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 10;
+  animation: fadeInAnimation 0.3s ease-out;
+}
+.state-details-card-map .state-details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm); }
+.state-details-card-map .state-details-header h2 { color: var(--primary-color); margin: 0; }
+.state-details-card-map .close-button { background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+.state-details-card-map .state-details-content p { margin-bottom: var(--spacing-xs); }
+
+.map-footer { margin-top: var(--spacing-lg); font-size: var(--font-size-xs); color: var(--text-muted); }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.state-list-container {
+  margin-top: var(--spacing-lg);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+}
+
+.state-list-container h2 {
+  color: var(--color-accent-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.state-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-sm);
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm);
+}
+
+.state-list li {
+  background-color: var(--color-bg-tertiary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-align: left;
+}
+
+.state-list li:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
