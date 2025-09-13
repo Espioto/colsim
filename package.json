@@ -9,6 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "preview:github": "vite preview --base /colsim/",
+    "build:github": "vite build --base /colsim/",
     "deploy": "gh-pages -d dist"
   },
   "homepage": "https://espioto.github.io/colsim",

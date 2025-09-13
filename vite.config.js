@@ -11,6 +11,8 @@ export default defineConfig(({ command }) => ({
   ],
   // Use different base paths for development vs production
   base: command === 'serve' ? '/' : '/colsim/',
+  // Ensure proper asset handling for GitHub Pages
+  assetsDir: 'assets',
   build: {
     // Use esbuild for faster builds and better CSP compatibility
     minify: 'esbuild',
@@ -32,6 +34,10 @@ export default defineConfig(({ command }) => ({
         // Additional CSP-safe options
         inlineDynamicImports: false,
         hoistTransitiveImports: false,
+        // Fix asset paths for GitHub Pages
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
       },
       // Disable eval in rollup
       external: [],
