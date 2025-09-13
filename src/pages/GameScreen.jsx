@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useGame } from "../context/GameContext";
+import { useNotification } from '../context/NotificationContext';
 import baselineExpenses from "../data/baselineExpenses";
 import { formatChoice } from "../utils/utils";
 import "./GameScreen.css";
@@ -26,7 +27,9 @@ function GameScreen() {
   makeInvestment,
   toggleSideHustle, // New function from context
   applyWellbeing,   // New function from context
-} = useGame();
+  } = useGame();
+
+  const { showError, showSuccess } = useNotification();
 
   const [selectedAction, setSelectedAction] = useState(null); // To manage which action panel is open
   const [investmentInput, setInvestmentInput] = useState(0);
@@ -98,12 +101,12 @@ function GameScreen() {
 
   const handleTakeLoan = () => {
     if (!loanAmount || loanAmount <= 0 || !interestRate || interestRate < 0 || !monthlyPayment || monthlyPayment <= 0) {
-      alert("Please enter valid loan details (amount > 0, rate >= 0, payment > 0).");
+      showError("Please enter valid loan details (amount > 0, rate >= 0, payment > 0).");
       return;
     }
     const minPayment = (loanAmount * interestRate) / 12;
     if (interestRate > 0 && monthlyPayment <= minPayment) {
-      alert(`Monthly payment (${formatCurrency(monthlyPayment)}) must be greater than the first month's interest (${formatCurrency(minPayment)}) to reduce principal.`);
+      showError(`Monthly payment (${formatCurrency(monthlyPayment)}) must be greater than the first month's interest (${formatCurrency(minPayment)}) to reduce principal.`);
       return;
     }
     takeLoan(loanAmount, interestRate, monthlyPayment);
@@ -115,7 +118,7 @@ function GameScreen() {
   const handleSetAllocation = () => {
     const amount = Number(allocationInput);
     if (isNaN(amount) || amount < 0) {
-      alert("Please enter a valid non-negative amount for savings allocation.");
+      showError("Please enter a valid non-negative amount for savings allocation.");
       return;
     }
     setSavingsAllocation(amount);
@@ -124,7 +127,7 @@ function GameScreen() {
   const handleSavingsAction = (action) => {
     const amount = Number(savingsInput);
     if (isNaN(amount) || amount <= 0) {
-      alert("Please enter a valid positive amount.");
+      showError("Please enter a valid positive amount.");
       return;
     }
 

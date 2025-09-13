@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
+import { useNotification } from '../context/NotificationContext';
 import './GameOver.css'; // Make sure this CSS file exists
 
 const GameOver = () => {
   const { playerState } = useGame();
+  const { showSuccess } = useNotification();
 
   const handleShare = () => {
     const summary = `
@@ -19,7 +21,7 @@ Final Health: ${finalState.health}%
 Final Happiness: ${finalState.happiness}%
 Productivity Level: ${finalState.productivityLevel}
     `.trim();
-    navigator.clipboard.writeText(summary).then(() => alert('Results copied to clipboard!'));
+    navigator.clipboard.writeText(summary).then(() => showSuccess('Results copied to clipboard!'));
   };
 
   const finalState = playerState || {

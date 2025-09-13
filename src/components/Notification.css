@@ -1,0 +1,67 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  max-width: 400px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform var(--transition-normal);
+}
+
+.notification-visible {
+  transform: translateX(0);
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.notification-message {
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  line-height: 1;
+  border-radius: var(--border-radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.notification-close:hover {
+  color: var(--text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Notification types */
+.notification-error {
+  border-left: 4px solid var(--color-error);
+}
+
+.notification-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.notification-success {
+  border-left: 4px solid var(--color-success);
+}
+
+.notification-info {
+  border-left: 4px solid var(--color-info);
+}

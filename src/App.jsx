@@ -13,28 +13,31 @@ import DonatePage from './pages/DonatePage';
 import AboutPage from './pages/AboutPage';
 import './App.css';
 import Navbar from './components/Navbar';
+import { NotificationProvider } from './context/NotificationContext';
 
 function App() {
   return (
-    <div className="app-container">
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/learn" element={<LearnPage />} />
-          <Route path="/donate" element={<DonatePage />} />
-          <Route path="/simulation" element={<MapPage />} />
-          <Route path="/start" element={<StartScreen />} />
-          <Route path="/start/:stateName" element={<StartScreen />} />
-          <Route path="/game" element={<GameScreen />} />
-          <Route path="/state-detail/:stateName" element={<StateDetail />} />
-          <Route path="/game-over" element={<GameOver />} />
-          <Route path="/education" element={<EducationPage />} />
-          
-        </Routes>
-      </main>
-    </div>
+    <NotificationProvider>
+      <div className="app-container">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/learn" element={<LearnPage />} />
+            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/simulation" element={<MapPage />} />
+            <Route path="/start" element={<StartScreen />} />
+            <Route path="/start/:stateName" element={<StartScreen />} />
+            <Route path="/game" element={<GameScreen />} />
+            <Route path="/state-detail/:stateName" element={<StateDetail />} />
+            <Route path="/game-over" element={<GameOver />} />
+            <Route path="/education" element={<EducationPage />} />
+            
+          </Routes>
+        </main>
+      </div>
+    </NotificationProvider>
   );
 }
 

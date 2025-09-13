@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
+import { useNotification } from '../context/NotificationContext';
 import statesData from '../data/statesData'; // YOU MUST POPULATE THIS FILE
 import './StartScreen.css'; // Make sure this CSS file exists
 
@@ -8,6 +9,7 @@ const StartScreen = () => {
   const { stateName } = useParams();
   const navigate = useNavigate();
   const { initializeGame, selectedMapState } = useGame();
+  const { showError } = useNotification();
 
   // Initialize state safely, defaulting to first state if context/params fail
   const [selectedState, setSelectedState] = useState(() => {
@@ -44,7 +46,7 @@ const StartScreen = () => {
 
   const handleStartGame = () => {
     if (!selectedState) {
-      alert("Error: No state selected. Please go back to the map and choose a state.");
+      showError("Error: No state selected. Please go back to the map and choose a state.");
       navigate('/simulation'); // Redirect to map if state is missing
       return;
     }
