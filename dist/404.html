@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cost of Living Simulator</title>
     <script>
-        // GitHub Pages SPA redirect for /colsim/ base path
-        var pathSegmentsToKeep = 1;
+        // GitHub Pages SPA redirect for custom domain
+        var pathSegmentsToKeep = 0;
         var l = window.location;
         l.replace(
             l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
@@ -19,6 +19,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="/colsim/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

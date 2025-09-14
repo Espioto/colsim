@@ -5,8 +5,8 @@ import App from './App.jsx'
 import GameProvider from './context/GameContext.jsx'
 import './main.css' // Assuming this is your primary global CSS
 
-// Determine the base path based on the environment
-const basename = import.meta.env.DEV ? '/' : '/colsim'
+// Use root path for custom domain
+const basename = '/'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
