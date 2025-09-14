@@ -84,8 +84,6 @@ export default defineConfig(({ command }) => ({
     // Add headers to fix MIME type issues
     headers: {
       'Content-Type': 'application/javascript; charset=utf-8'
-    },
-    // Ensure proper handling of JSX files
-    middlewareMode: false
+    }
   },
 }))
