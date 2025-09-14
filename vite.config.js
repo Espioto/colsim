@@ -77,6 +77,13 @@ export default defineConfig(({ command }) => ({
   },
   // Server configuration
   server: {
-    // CSP temporarily disabled for debugging
+    // Configure MIME types for JSX files
+    fs: {
+      strict: false
+    },
+    // Add headers to fix MIME type issues
+    headers: {
+      'Content-Type': 'application/javascript; charset=utf-8'
+    }
   },
 }))
