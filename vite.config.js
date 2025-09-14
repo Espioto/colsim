@@ -9,8 +9,8 @@ export default defineConfig(({ command }) => ({
       fastRefresh: false,
     })
   ],
-  // Use different base paths for development vs production
-  base: command === 'serve' ? '/' : '/colsim/',
+  // Use root path for custom domain
+  base: '/',
   // Ensure proper asset handling for GitHub Pages
   assetsDir: 'assets',
   build: {

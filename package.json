@@ -12,7 +12,7 @@
     "build:github": "vite build --base /colsim/",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://espioto.github.io/colsim",
+  "homepage": "https://costoflivingsim.com",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
