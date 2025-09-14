@@ -25,7 +25,6 @@ function GameScreen() {
   withdrawFromInvestment,
   chooseInvestment,
   makeInvestment,
-  toggleSideHustle, // New function from context
   applyWellbeing,   // New function from context
   } = useGame();
 
@@ -54,7 +53,6 @@ function GameScreen() {
     { id: "transportation", label: "Transport", icon: "🚗" },
     { id: "entertainment", label: "Entertainment", icon: "🎮" },
     { id: "education", label: "Education", icon: "📚" },
-    { id: "sideHustle", label: "Side Hustle", icon: "💼" },
     { id: "wellbeing", label: "Wellbeing", icon: "🧘" },
     { id: "family", label: "Family", icon: "👪" },
     { id: "savings", label: "Savings", icon: "🏦" },
@@ -293,12 +291,11 @@ function GameScreen() {
 
   
 
-  const renderSideHustleOptions = () => { if (!baselineExpenses.sideHustle) return <p>Side Hustle data unavailable.</p>; const { sideHustleActive, sideHustleType, productivityLevel } = playerState; return ( <div className="side-hustle-controls"><div className="current-hustle-status"><h4>Status: {sideHustleActive ? (baselineExpenses.sideHustle[sideHustleType]?.name || 'Active') : 'Inactive'}</h4>{sideHustleActive && sideHustleType && (<p>Est. Income: +{formatCurrency((baselineExpenses.sideHustle[sideHustleType].baseWeeklyIncome || 0) * productivityLevel * 0.1)} / week.</p>)}</div><div className="hustle-options">{Object.entries(baselineExpenses.sideHustle).map(([key, hustle]) => { const isActive = sideHustleActive && sideHustleType === key; const buttonText = isActive ? `Stop ${hustle.name}` : `Start ${hustle.name}`; const buttonAction = isActive ? () => toggleSideHustle(null) : () => toggleSideHustle(key); const isDisabled = sideHustleActive && !isActive; return ( <div key={key} className={`hustle-option-card option-card ${isActive ? "selected" : ""}`}><div className="option-header"><h4>{formatChoice(hustle.name)}</h4></div><div className="option-details"><div className="option-cost"><strong>Est. Income: +{formatCurrency((hustle.baseWeeklyIncome || 0) * productivityLevel * 0.1)} / week</strong></div><div className="option-effect negative">Stress Impact: -{hustle.stressImpact || 0} Happiness / week</div></div><div className="option-description">{hustle.description || ''}</div><button className={`action-button-inline ${isActive ? 'warning' : isDisabled ? '' : 'positive'}`} onClick={buttonAction} disabled={isDisabled} style={{marginTop: '10px'}}>{buttonText}</button></div> ); })}</div></div> ); };
   const renderWellbeingOptions = () => { if (!baselineExpenses.wellbeing) return <p>Wellbeing data unavailable.</p>; return Object.entries(baselineExpenses.wellbeing).map(([key, activity]) => { const affordable = playerState.balance >= activity.cost; return ( <div key={key} className={`option-card wellbeing-option ${!affordable ? 'disabled' : ''}`} onClick={affordable ? () => applyWellbeing(key) : null} role="button" tabIndex={affordable ? 0 : -1} aria-disabled={!affordable} style={{ cursor: affordable ? 'pointer' : 'not-allowed', opacity: affordable ? 1 : 0.6 }}><div className="option-header"><h4>{formatChoice(activity.name)}</h4></div><div className="option-details"><div className="option-cost"><strong>Cost: {formatCurrency(activity.cost)}</strong></div><div className="option-effects">{activity.healthBoost > 0 && (<div className="option-effect positive">Health: +{activity.healthBoost}</div>)}{activity.happinessBoost > 0 && (<div className="option-effect positive">Happiness: +{activity.happinessBoost}</div>)}</div></div><div className="option-description">{activity.description || ''}</div>{!affordable && <div className="option-warning">Cannot Afford</div>}</div> ); }); };
 
   const renderActionPanel = () => {
     const panelMap = {
-      housing: { title: "Housing Options", renderer: renderHousingOptions }, food: { title: "Food Options", renderer: renderFoodOptions }, healthcare: { title: "Healthcare Options", renderer: renderHealthcareOptions }, entertainment: { title: "Entertainment Options", renderer: renderEntertainmentOptions }, education: { title: "Education Options", renderer: renderEducationOptions }, transportation: { title: "Transportation Options", renderer: renderTransportationOptions }, sideHustle: { title: "Side Hustle", renderer: renderSideHustleOptions }, wellbeing: { title: "Wellbeing Activities", renderer: renderWellbeingOptions }, family: { title: "Family Management", renderer: renderFamilyOptions }, savings: { title: "Savings Management", renderer: renderSavingsOptions },  loans: { title: "Loan Management", renderer: renderLoanOptions }, investments: { title: "Investment Management", renderer: renderInvestmentOptions },
+      housing: { title: "Housing Options", renderer: renderHousingOptions }, food: { title: "Food Options", renderer: renderFoodOptions }, healthcare: { title: "Healthcare Options", renderer: renderHealthcareOptions }, entertainment: { title: "Entertainment Options", renderer: renderEntertainmentOptions }, education: { title: "Education Options", renderer: renderEducationOptions }, transportation: { title: "Transportation Options", renderer: renderTransportationOptions }, wellbeing: { title: "Wellbeing Activities", renderer: renderWellbeingOptions }, family: { title: "Family Management", renderer: renderFamilyOptions }, savings: { title: "Savings Management", renderer: renderSavingsOptions },  loans: { title: "Loan Management", renderer: renderLoanOptions }, investments: { title: "Investment Management", renderer: renderInvestmentOptions },
     };
     const selectedPanel = panelMap[selectedAction];
     if (!selectedPanel) { return <div className="action-options-placeholder">Select an action icon to see options.</div>; }

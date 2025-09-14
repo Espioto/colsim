@@ -18,7 +18,7 @@ The application should then be accessible at `http://localhost:5173` (or another
 * Simulation setup with income choices.
 * Core game loop advancing week by week.
 * Budgeting for housing, food, healthcare, entertainment, education, transportation.
-* Management of dependents, loans, savings, side hustles, and wellbeing activities.
+* Management of dependents, loans, savings, and wellbeing activities.
 * Productivity level system affecting income.
 * Random life events.
 * Game over and win conditions.

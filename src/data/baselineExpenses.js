@@ -47,12 +47,6 @@ const baselineExpenses = {
     basicUtilitiesPerMonth: 270, internetPerMonth: 80, cellPhonePerMonth: 65,
     descriptions: { utilities: "Electricity, water, gas, trash.", internet: "Home internet service.", cellPhone: "Basic cell phone plan." }
   },
-  sideHustle: {
-    delivery: { name: "Gig Delivery", description: "Deliver food/packages. Flexible hours, moderate income, adds stress.", baseWeeklyIncome: 45, stressImpact: 3 },
-    tutoring: { name: "Online Tutoring", description: "Tutor students online. Requires knowledge, decent income, less stress.", baseWeeklyIncome: 65, stressImpact: 1 },
-    freelance: { name: "Freelance Writing", description: "Write articles/copy online. Variable income.", baseWeeklyIncome: 55, stressImpact: 2 },
-    petSitting: { name: "Pet Sitting", description: "Watch pets for people in your area. Low stress, moderate income.", baseWeeklyIncome: 50, stressImpact: 1 }
-  },
   wellbeing: { // Cost per use
     gym: { name: "Gym Session", description: "Hit the gym for a workout.", cost: 25, healthBoost: 5, happinessBoost: 2 },
     meditation: { name: "Meditation App", description: "Use a guided meditation app.", cost: 10, healthBoost: 1, happinessBoost: 4 },

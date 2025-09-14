@@ -22,7 +22,6 @@ export const GameProvider = ({ children }) => {
     chosenFoodOption: "basic", entertainmentOption: "none", healthcareOption: "none",
     educationOption: "none", transportationOption: "publicTransit", loans: [],
     laidOff: false, weeksSurvived: 0, latestEventMessage: '',
-    sideHustleActive: false, sideHustleType: null,
     investmentBalance: 0, investmentReturnRate: 0.08, // Annual return rate (e.g., 8%)
     inflationRate: 0.03, // Annual inflation rate (e.g., 3%)
     investmentType: null,
@@ -134,22 +133,6 @@ export const GameProvider = ({ children }) => {
     }
   };
 
-  const toggleSideHustle = (type) => {
-    setPlayerState(prev => {
-      const currentlyActive = prev.sideHustleActive && prev.sideHustleType === type;
-      const newActiveState = !currentlyActive;
-      const newType = newActiveState ? type : null;
-      let message = '';
-      if (newActiveState) {
-        const hustleName = baselineExpenses.sideHustle[type]?.name || 'Side Hustle';
-        message = `Started ${hustleName}.`;
-      } else if (prev.sideHustleActive) {
-        const hustleName = baselineExpenses.sideHustle[prev.sideHustleType]?.name || 'Side Hustle';
-        message = `Stopped ${hustleName}.`;
-      }
-      return { ...prev, sideHustleActive: newActiveState, sideHustleType: newType, latestEventMessage: message || prev.latestEventMessage };
-    });
-  };
 
   const applyWellbeing = (type) => {
      const activity = baselineExpenses.wellbeing[type];
@@ -165,7 +148,7 @@ export const GameProvider = ({ children }) => {
   const nextWeek = () => {
     if (gameOver || win) return;
     setPlayerState((prevState) => {
-        let { balance, health, happiness, productivityLevel, productivityProgress, productivityThreshold, savingsBalance, savingsInterestRate, monthlySavingsAllocation, location, wageType, chosenFoodOption, housingChoice, entertainmentOption, healthcareOption, educationOption, transportationOption, dependents, loans, laidOff, currentWeek, weeksSurvived, sideHustleActive, sideHustleType, investmentBalance, investmentReturnRate, inflationRate, investmentType, careerLevel } = prevState;
+        let { balance, health, happiness, productivityLevel, productivityProgress, productivityThreshold, savingsBalance, savingsInterestRate, monthlySavingsAllocation, location, wageType, chosenFoodOption, housingChoice, entertainmentOption, healthcareOption, educationOption, transportationOption, dependents, loans, laidOff, currentWeek, weeksSurvived, investmentBalance, investmentReturnRate, inflationRate, investmentType, careerLevel } = prevState;
         let latestEvent = '';
         if (!location?.costIndices || !location.name) { setGameOver(true); return {...prevState, latestEventMessage: "Critical Error: Location Data Missing!"}; }
         const { costIndices } = location;
@@ -187,7 +170,6 @@ export const GameProvider = ({ children }) => {
         if (transportationOption && baselineExpenses.transportation?.[transportationOption]) { balance -= baselineExpenses.transportation[transportationOption].weeklyCost || 0; happiness += baselineExpenses.transportation[transportationOption].happinessImpact || 0; }
         if (dependents > 0 && baselineExpenses.family?.costPerDependent) { balance -= baselineExpenses.family.costPerDependent * dependents; happiness += (baselineExpenses.family.happinessBonusPerDependent || 0) * dependents; }
 
-        if (sideHustleActive && sideHustleType) { const hustleData = baselineExpenses.sideHustle[sideHustleType]; if (hustleData) { const weeklyHustleIncome = (hustleData.baseWeeklyIncome || 0) * productivityLevel * 0.1; balance += weeklyHustleIncome; happiness -= hustleData.stressImpact || 0; latestEvent = latestEvent || `Earned ${formatCurrency(weeklyHustleIncome)} from ${hustleData.name}.`; } }
 
         // Check for career promotion
         const currentCareer = baselineExpenses.careers[careerLevel];
@@ -246,7 +228,7 @@ export const GameProvider = ({ children }) => {
 
         const loseCondition = balance < - (currentMonthlyIncome * 0.5 || 500) || health <= 0 || happiness <= 0; if (loseCondition) { setGameOver(true); return { ...prevState, balance, health, happiness, productivityLevel, monthlyIncome: currentMonthlyIncome, currentWeek: nextWeekNumber, weeksSurvived, loans, laidOff, latestEventMessage: "Game Over!" }; }
         const winCondition = weeksSurvived + 1 >= 52; if (winCondition) { setWin(true); return { ...prevState, balance, health, happiness, productivityLevel, monthlyIncome: currentMonthlyIncome, currentWeek: nextWeekNumber, weeksSurvived: weeksSurvived + 1, loans, laidOff, latestEventMessage: "You survived the year!" }; }
-        return { ...prevState, balance, health, happiness, productivityLevel, productivityProgress, productivityThreshold, savingsBalance, monthlySavingsAllocation, monthlyIncome: currentMonthlyIncome, currentWeek: nextWeekNumber, weeksSurvived: weeksSurvived + 1, loans, laidOff, latestEventMessage: finalEventMessage, sideHustleActive, sideHustleType, careerLevel };
+        return { ...prevState, balance, health, happiness, productivityLevel, productivityProgress, productivityThreshold, savingsBalance, monthlySavingsAllocation, monthlyIncome: currentMonthlyIncome, currentWeek: nextWeekNumber, weeksSurvived: weeksSurvived + 1, loans, laidOff, latestEventMessage: finalEventMessage, careerLevel };
     });
   };
 
@@ -291,7 +273,7 @@ export const GameProvider = ({ children }) => {
   const formatCurrency = (amount) => { if (typeof amount !== 'number' || isNaN(amount)) amount = 0; return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); };
 
   return (
-    <GameContext.Provider value={{ playerState, gameOver, win, selectedMapState, setSelectedMapState, initializeGame, nextWeek, chooseHousing, chooseFoodOption, chooseEntertainment, chooseHealthcare, chooseEducation, chooseTransportation, addDependent, removeDependent, takeLoan, setSavingsAllocation, depositToSavings, withdrawFromSavings, makeInvestment, withdrawFromInvestment, chooseInvestment, toggleSideHustle, applyWellbeing, inflationRate: playerState.inflationRate }}>
+    <GameContext.Provider value={{ playerState, gameOver, win, selectedMapState, setSelectedMapState, initializeGame, nextWeek, chooseHousing, chooseFoodOption, chooseEntertainment, chooseHealthcare, chooseEducation, chooseTransportation, addDependent, removeDependent, takeLoan, setSavingsAllocation, depositToSavings, withdrawFromSavings, makeInvestment, withdrawFromInvestment, chooseInvestment, applyWellbeing, inflationRate: playerState.inflationRate }}>
       {children}
     </GameContext.Provider>
   );
